@@ -11,6 +11,7 @@ const getBaseURL = () => {
 };
 
 export const auth = betterAuth({
+    secret: process.env.BETTER_AUTH_SECRET || "finance-tracker-super-secret-key-fallback-12345",
     baseURL: getBaseURL(),
     trustedOrigins: [
         "https://monee-app.vercel.app",

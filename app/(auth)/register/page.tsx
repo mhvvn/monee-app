@@ -29,7 +29,7 @@ export default function RegisterPage() {
                         router.push("/dashboard");
                     },
                     onError: (ctx) => {
-                        setError(ctx.error.message);
+                        setError(ctx?.error?.message || "Internal Server Error 500: Gagal menghubungkan ke Database.");
                     }
                 }
             });
