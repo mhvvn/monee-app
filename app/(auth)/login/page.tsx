@@ -31,8 +31,9 @@ export default function LoginPage() {
                     }
                 }
             });
-        } catch (err) {
-            setError("Terjadi kesalahan. Coba lagi nanti.");
+        } catch (err: any) {
+            console.error("Login error:", err);
+            setError(err.message || "Terjadi kesalahan koneksi. Coba lagi nanti.");
         } finally {
             setLoading(false);
         }

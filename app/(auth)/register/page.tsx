@@ -33,8 +33,9 @@ export default function RegisterPage() {
                     }
                 }
             });
-        } catch (err) {
-            setError("Gagal mendaftar. Pastikan email belum terdaftar.");
+        } catch (err: any) {
+            console.error("Registrasi error:", err);
+            setError(err.message || "Gagal mendaftar. Pastikan email belum terdaftar atau koneksi baik.");
         } finally {
             setLoading(false);
         }
