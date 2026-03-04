@@ -70,7 +70,7 @@ export async function createTransaction(formData: FormData) {
         return { success: true };
     } catch (error: any) {
         if (error instanceof z.ZodError) {
-            return { success: false, error: error.errors[0]?.message || "Input tidak valid" };
+            return { success: false, error: (error as any).errors[0]?.message || "Input tidak valid" };
         }
         return { success: false, error: "Terjadi kesalahan server." };
     }
