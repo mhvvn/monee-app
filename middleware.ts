@@ -10,7 +10,6 @@ export async function middleware(request: NextRequest) {
             headers: {
                 cookie: request.headers.get("cookie") || "",
             },
-            disableHttpError: true, // fallback to null internally if not logged in
         }
     );
 
