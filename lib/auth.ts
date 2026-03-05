@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "@better-auth/prisma-adapter";
-import { username } from "better-auth/plugins";
+import { username, admin } from "better-auth/plugins";
 import { db } from "./db";
 
 const getBaseURL = () => {
@@ -26,6 +26,9 @@ export const auth = betterAuth({
         enabled: true,
     },
     plugins: [
-        username()
+        username(),
+        admin({
+            // Fungsi plugin otomatis berurusan dengan logika Ban / Unban
+        })
     ]
 });
