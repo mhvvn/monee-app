@@ -10,7 +10,7 @@ export default function DashboardLayout({
 }) {
     return (
         <MobileSidebarProvider>
-            <div className="flex min-h-screen bg-neutral-950 text-white font-sans overflow-hidden">
+            <div className="flex min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white font-sans overflow-hidden transition-colors duration-300">
                 {/* Sidebar for Desktop & Mobile Overlay */}
                 <Sidebar />
 

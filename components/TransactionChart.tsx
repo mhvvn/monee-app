@@ -32,15 +32,15 @@ export default function TransactionChart({ data }: { data: ChartData[] }) {
     const CustomTooltip = ({ active, payload, label }: any) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl shadow-2xl">
-                    <p className="text-white font-medium mb-2">{label}</p>
+                <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-4 rounded-xl shadow-2xl">
+                    <p className="text-neutral-900 dark:text-white font-medium mb-2">{label}</p>
                     {payload.map((entry: any, index: number) => (
                         <div key={index} className="flex items-center space-x-2 text-sm mt-1">
                             <div
                                 className="w-2 h-2 rounded-full"
                                 style={{ backgroundColor: entry.color }}
                             />
-                            <span className="text-neutral-400">{entry.name}:</span>
+                            <span className="text-neutral-500 dark:text-neutral-400">{entry.name}:</span>
                             <span
                                 className="font-semibold"
                                 style={{ color: entry.color }}

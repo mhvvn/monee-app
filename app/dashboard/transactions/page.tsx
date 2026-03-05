@@ -9,10 +9,10 @@ export default async function TransactionsPage() {
 
     return (
         <div className="space-y-6 max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-neutral-800 pb-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
                 <div>
-                    <h2 className="text-3xl font-bold">Riwayat Transaksi</h2>
-                    <p className="text-neutral-400 mt-1">Daftar semua pergerakan dana Anda.</p>
+                    <h2 className="text-3xl font-bold text-neutral-900 dark:text-white">Riwayat Transaksi</h2>
+                    <p className="text-neutral-500 dark:text-neutral-400 mt-1">Daftar semua pergerakan dana Anda.</p>
                 </div>
                 <div className="mt-4 md:mt-0 flex flex-wrap gap-3 items-center">
                     <ExportTransactions transactions={transactions} />
@@ -40,17 +40,17 @@ export default async function TransactionsPage() {
                 </div>
             </div>
 
-            <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden shadow-xl">
+            <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-sm dark:shadow-xl">
                 {transactions.length === 0 ? (
-                    <div className="p-12 text-center text-neutral-500">
-                        <h3 className="text-lg font-medium text-neutral-300">Belum Ada Transaksi</h3>
-                        <p className="mt-2">Catat pemasukan atau pengeluaran pertama Anda.</p>
+                    <div className="p-12 text-center text-neutral-500 dark:text-neutral-500">
+                        <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-300">Belum Ada Transaksi</h3>
+                        <p className="mt-2 text-neutral-500 dark:text-neutral-400">Catat pemasukan atau pengeluaran pertama Anda.</p>
                     </div>
                 ) : (
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-neutral-950 border-b border-neutral-800 text-neutral-400 text-sm">
+                                <tr className="bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 text-sm">
                                     <th className="p-4 font-medium">Tanggal</th>
                                     <th className="p-4 font-medium">Kategori</th>
                                     <th className="p-4 font-medium">Deskripsi</th>
@@ -59,11 +59,11 @@ export default async function TransactionsPage() {
                                     <th className="p-4 w-10"></th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-neutral-800/60">
+                            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800/60">
                                 {transactions.map((t: any) => {
                                     const isIncome = t.type === "INCOME";
                                     return (
-                                        <tr key={t.id} className="hover:bg-neutral-800/30 transition-colors">
+                                        <tr key={t.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-800/30 transition-colors text-neutral-900 dark:text-white">
                                             <td className="p-4 text-sm whitespace-nowrap">
                                                 {new Date(t.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Jakarta" })}
                                             </td>
@@ -72,13 +72,13 @@ export default async function TransactionsPage() {
                                                     {t.category.name}
                                                 </span>
                                             </td>
-                                            <td className="p-4 text-neutral-300 max-w-xs truncate">
+                                            <td className="p-4 text-neutral-600 dark:text-neutral-300 max-w-xs truncate">
                                                 {t.description || "-"}
                                             </td>
-                                            <td className="p-4 text-neutral-400 text-sm">
+                                            <td className="p-4 text-neutral-500 dark:text-neutral-400 text-sm">
                                                 {t.wallet.name}
                                             </td>
-                                            <td className={`p-4 text-right font-medium whitespace-nowrap ${isIncome ? "text-emerald-400" : "text-white"}`}>
+                                            <td className={`p-4 text-right font-medium whitespace-nowrap ${isIncome ? "text-emerald-600 dark:text-emerald-400" : "text-neutral-900 dark:text-white"}`}>
                                                 {isIncome ? "+" : "-"} Rp {Number(t.amount).toLocaleString("id-ID")}
                                             </td>
                                             <td className="p-4 text-center">

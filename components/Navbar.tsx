@@ -25,12 +25,12 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-neutral-800 bg-neutral-950/80 px-4 md:justify-end md:px-8 backdrop-blur-md">
+        <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 px-4 md:justify-end md:px-8 backdrop-blur-md">
 
             <div className="flex items-center md:hidden">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="text-neutral-400 hover:text-white"
+                    className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
                 >
                     <Menu className="h-6 w-6" />
                 </button>
@@ -43,19 +43,19 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center space-x-4">
-                <button className="text-neutral-400 hover:text-emerald-400 transition-colors relative">
+                <button className="text-neutral-500 hover:text-emerald-600 dark:text-neutral-400 dark:hover:text-emerald-400 transition-colors relative">
                     <Bell className="h-5 w-5" />
-                    <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-neutral-950" />
+                    <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-neutral-950" />
                 </button>
 
                 <div className="relative" ref={dropdownRef}>
                     <div
-                        className="flex items-center space-x-3 cursor-pointer p-1.5 rounded-full hover:bg-neutral-800 transition-colors"
+                        className="flex items-center space-x-3 cursor-pointer p-1.5 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     >
                         <div className="hidden md:block text-right">
-                            <p className="text-sm font-medium">{session?.user.name}</p>
-                            <p className="text-xs text-neutral-400">{session?.user.email}</p>
+                            <p className="text-sm font-medium text-neutral-900 dark:text-white">{session?.user.name}</p>
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400">{session?.user.email}</p>
                         </div>
                         <div className="h-9 w-9 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center border border-emerald-500/30">
                             {session?.user.image ? (
@@ -67,17 +67,17 @@ export default function Navbar() {
                     </div>
 
                     {isDropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-48 bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl py-2 z-50 animate-in fade-in slide-in-from-top-2">
-                            <div className="px-4 py-2 border-b border-neutral-800/60 md:hidden">
-                                <p className="text-sm font-medium text-white truncate">{session?.user.name}</p>
-                                <p className="text-xs text-neutral-400 truncate">{session?.user.email}</p>
+                        <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-2xl py-2 z-50 animate-in fade-in slide-in-from-top-2">
+                            <div className="px-4 py-2 border-b border-neutral-100 dark:border-neutral-800/60 md:hidden">
+                                <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">{session?.user.name}</p>
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{session?.user.email}</p>
                             </div>
                             <button
                                 onClick={() => {
                                     setIsDropdownOpen(false);
                                     signOut({ fetchOptions: { onSuccess: () => { window.location.href = "/login"; } } });
                                 }}
-                                className="w-full text-left px-4 py-2 text-sm text-neutral-300 hover:text-red-400 hover:bg-red-500/10 transition-colors flex items-center mt-1"
+                                className="w-full text-left px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors flex items-center mt-1"
                             >
                                 <LogOut className="h-4 w-4 mr-2" />
                                 Keluar Akun

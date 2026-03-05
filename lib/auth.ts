@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "@better-auth/prisma-adapter";
+import { username } from "better-auth/plugins";
 import { db } from "./db";
 
 const getBaseURL = () => {
@@ -23,5 +24,8 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
-    }
+    },
+    plugins: [
+        username()
+    ]
 });

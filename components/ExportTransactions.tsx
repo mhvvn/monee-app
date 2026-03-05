@@ -131,7 +131,7 @@ export default function ExportTransactions({ transactions }: { transactions: Tra
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center space-x-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-white px-4 py-2.5 rounded-xl transition-colors font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white px-4 py-2.5 rounded-xl transition-colors font-medium shadow-sm"
             >
                 <Download className="h-5 w-5" />
                 <span className="hidden sm:inline">Export</span>
@@ -143,26 +143,26 @@ export default function ExportTransactions({ transactions }: { transactions: Tra
                         className="fixed inset-0 z-10"
                         onClick={() => setIsOpen(false)}
                     ></div>
-                    <div className="absolute right-0 mt-2 w-56 bg-neutral-900 border border-neutral-800 rounded-xl shadow-2xl z-20 overflow-hidden flex flex-col py-1">
+                    <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-2xl z-20 overflow-hidden flex flex-col py-1">
                         <button
                             onClick={exportToCSV}
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-neutral-300 hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors text-left"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-left"
                         >
                             <Table className="h-5 w-5 text-emerald-500" />
                             <div className="flex flex-col">
-                                <span className="font-medium">Export ke Excel</span>
-                                <span className="text-xs text-neutral-500">Format CSV (.csv)</span>
+                                <span className="font-medium text-neutral-900 dark:text-white">Export ke Excel</span>
+                                <span className="text-xs text-neutral-500 dark:text-neutral-500">Format CSV (.csv)</span>
                             </div>
                         </button>
-                        <div className="h-px w-full bg-neutral-800"></div>
+                        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800"></div>
                         <button
                             onClick={exportToPDF}
-                            className="flex items-center space-x-3 px-4 py-3 text-sm text-neutral-300 hover:bg-red-500/10 hover:text-red-400 transition-colors text-left"
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 transition-colors text-left"
                         >
                             <FileText className="h-5 w-5 text-red-500" />
                             <div className="flex flex-col">
-                                <span className="font-medium">Export ke PDF</span>
-                                <span className="text-xs text-neutral-500">Bisa langsung dicetak</span>
+                                <span className="font-medium text-neutral-900 dark:text-white">Export ke PDF</span>
+                                <span className="text-xs text-neutral-500 dark:text-neutral-500">Bisa langsung dicetak</span>
                             </div>
                         </button>
                     </div>

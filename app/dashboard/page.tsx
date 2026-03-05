@@ -56,10 +56,10 @@ export default function Dashboard() {
             <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <div>
                     <h2 className="text-2xl font-bold">Ringkasan Keuangan</h2>
-                    <p className="text-neutral-400 mt-1">Pantau arus kas Anda bulan ini.</p>
+                    <p className="text-neutral-500 dark:text-neutral-400 mt-1">Pantau arus kas Anda bulan ini.</p>
                 </div>
                 <div className="mt-4 md:mt-0">
-                    <Link href="/dashboard/transactions/new" className="bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-bold px-4 py-2 rounded-xl transition-colors shadow-lg shadow-emerald-500/20 inline-block">
+                    <Link href="/dashboard/transactions/new" className="bg-emerald-500 hover:bg-emerald-600 dark:hover:bg-emerald-400 text-white dark:text-neutral-950 font-bold px-4 py-2 rounded-xl transition-colors shadow-lg shadow-emerald-500/20 inline-block">
                         + Tambah Transaksi
                     </Link>
                 </div>
@@ -67,14 +67,14 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {stats.map((stat, i) => (
-                    <div key={i} className={`p-6 rounded-2xl border ${stat.border} bg-neutral-900/50 backdrop-blur-sm relative overflow-hidden group hover:bg-neutral-800/50 transition-colors`}>
+                    <div key={i} className={`p-6 rounded-2xl border ${stat.border} bg-white dark:bg-neutral-900/50 backdrop-blur-sm relative overflow-hidden group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors shadow-sm`}>
                         <div className={`absolute top-0 right-0 w-24 h-24 ${stat.bg} rounded-full -mt-8 -mr-8 blur-2xl group-hover:blur-3xl transition-all`} />
                         <div className="flex items-center space-x-4 relative z-10">
                             <div className={`p-3 rounded-xl ${stat.bg} ${stat.color}`}>
                                 <stat.icon className="h-6 w-6" />
                             </div>
                             <div>
-                                <p className="text-sm text-neutral-400 font-medium">{stat.name}</p>
+                                <p className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">{stat.name}</p>
                                 <p className="text-2xl font-bold mt-1 tracking-tight">{stat.value}</p>
                             </div>
                         </div>
@@ -83,14 +83,14 @@ export default function Dashboard() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 min-h-[400px]">
+                <div className="lg:col-span-2 bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 min-h-[400px] shadow-sm">
                     <h3 className="font-semibold text-lg mb-4">Grafik Transaksi</h3>
-                    <div className="h-full w-full bg-neutral-950/50 rounded-xl border border-neutral-800/50 p-4">
+                    <div className="h-full w-full bg-neutral-50 dark:bg-neutral-950/50 rounded-xl border border-neutral-100 dark:border-neutral-800/50 p-4">
                         <TransactionChart data={data.chartData} />
                     </div>
                 </div>
 
-                <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6">
+                <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-lg">5 Transaksi Terakhir</h3>
                         <Link href="/dashboard/transactions" className="text-sm text-emerald-400 hover:text-emerald-300">Lihat Semua</Link>
@@ -105,17 +105,17 @@ export default function Dashboard() {
                             {data.recentTransactions.map((tx: any) => {
                                 const isIncome = tx.type === "INCOME"; // Changed from TransactionType.INCOME
                                 return (
-                                    <div key={tx.id} className="flex justify-between items-center p-3 hover:bg-neutral-800/30 rounded-xl transition-colors">
+                                    <div key={tx.id} className="flex justify-between items-center p-3 hover:bg-neutral-50 dark:hover:bg-neutral-800/30 rounded-xl transition-colors">
                                         <div className="flex items-center space-x-3">
                                             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: tx.category.color }} />
                                             <div>
-                                                <p className="font-medium text-sm">{tx.category.name}</p>
-                                                <p className="text-xs text-neutral-500">
+                                                <p className="font-medium text-sm text-neutral-900 dark:text-white">{tx.category.name}</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">
                                                     {new Date(tx.date).toLocaleDateString("id-ID", { day: "numeric", month: "short" })}
                                                 </p>
                                             </div>
                                         </div>
-                                        <p className={`font-semibold text-sm ${isIncome ? "text-emerald-400" : "text-white"}`}>
+                                        <p className={`font-semibold text-sm ${isIncome ? "text-emerald-600 dark:text-emerald-400" : "text-neutral-900 dark:text-white"}`}>
                                             {isIncome ? "+" : "-"} {formatIDR(Number(tx.amount))}
                                         </p>
                                     </div>

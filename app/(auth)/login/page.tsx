@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { signIn } from "@/lib/auth-client";
-import { Loader2, Mail, Lock } from "lucide-react";
+import { Loader2, UserRound, Lock } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
+    const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -19,18 +19,36 @@ export default function LoginPage() {
         setError(null);
 
         try {
-            await signIn.email({
-                email,
-                password,
-                fetchOptions: {
-                    onSuccess: () => {
-                        router.push("/dashboard");
-                    },
-                    onError: (ctx) => {
-                        setError(ctx.error.message);
+            // Jika identifier mengandung "@", berarti login pake email, jika tidak, login pake username
+            const isEmail = identifier.includes("@");
+
+            if (isEmail) {
+                await signIn.email({
+                    email: identifier,
+                    password,
+                    fetchOptions: {
+                        onSuccess: () => {
+                            router.push("/dashboard");
+                        },
+                        onError: (ctx) => {
+                            setError(ctx.error.message);
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                await signIn.username({
+                    username: identifier,
+                    password,
+                    fetchOptions: {
+                        onSuccess: () => {
+                            router.push("/dashboard");
+                        },
+                        onError: (ctx) => {
+                            setError(ctx.error.message);
+                        }
+                    }
+                });
+            }
         } catch (err: any) {
             console.error("Login error:", err);
             setError(err.message || "Terjadi kesalahan koneksi. Coba lagi nanti.");
@@ -54,16 +72,16 @@ export default function LoginPage() {
                 )}
 
                 <div className="space-y-1">
-                    <label className="text-sm font-medium text-neutral-300 ml-1">Email</label>
+                    <label className="text-sm font-medium text-neutral-300 ml-1">Email atau Username</label>
                     <div className="relative">
-                        <Mail className="absolute left-3 top-2.5 h-5 w-5 text-neutral-500" />
+                        <UserRound className="absolute left-3 top-2.5 h-5 w-5 text-neutral-500" />
                         <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            value={identifier}
+                            onChange={(e) => setIdentifier(e.target.value)}
                             required
                             className="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-10 py-2.5 text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
-                            placeholder="nama@email.com"
+                            placeholder="nama@email.com atau username"
                         />
                     </div>
                 </div>

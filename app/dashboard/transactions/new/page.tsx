@@ -68,7 +68,7 @@ function TransactionForm() {
     const filteredCategories = categories.filter(c => c.type === type);
 
     return (
-        <form onSubmit={handleSubmit} className="bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden group">
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-neutral-900/50 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden group">
             {/* Soft background reflections */}
             <div className={`absolute top-[-20%] right-[-10%] w-[50%] h-[50%] blur-[100px] rounded-full pointer-events-none transition-all duration-1000 ${type === "INCOME" ? "bg-emerald-500/10" : "bg-red-500/10"}`} />
 
@@ -82,13 +82,13 @@ function TransactionForm() {
             <div className="space-y-8 relative z-10">
 
                 {/* 1. Transaction Type Toggle */}
-                <div className="flex p-1 bg-neutral-950/50 rounded-2xl border border-neutral-800 shadow-inner">
+                <div className="flex p-1 bg-neutral-100 dark:bg-neutral-950/50 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-inner">
                     <button
                         type="button"
                         onClick={() => setType("EXPENSE")}
                         className={`flex-1 flex justify-center items-center py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${type === "EXPENSE"
-                            ? "bg-red-500/20 text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.2)] border border-red-500/30 scale-[1.02]"
-                            : "text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800/50"
+                            ? "bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.2)] border border-red-200 dark:border-red-500/30 scale-[1.02]"
+                            : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800/50"
                             }`}
                     >
                         <MinusCircle className={`mr-2 h-4 w-4 ${type === "EXPENSE" ? "animate-pulse" : ""}`} /> Pengeluaran
@@ -97,8 +97,8 @@ function TransactionForm() {
                         type="button"
                         onClick={() => setType("INCOME")}
                         className={`flex-1 flex justify-center items-center py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${type === "INCOME"
-                            ? "bg-emerald-500/20 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] border border-emerald-500/30 scale-[1.02]"
-                            : "text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800/50"
+                            ? "bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] border border-emerald-200 dark:border-emerald-500/30 scale-[1.02]"
+                            : "text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800/50"
                             }`}
                     >
                         <PlusCircle className={`mr-2 h-4 w-4 ${type === "INCOME" ? "animate-pulse" : ""}`} /> Pemasukan
@@ -106,7 +106,7 @@ function TransactionForm() {
                 </div>
 
                 {/* 2. Amount Input (Large Centered) */}
-                <div className="text-center pb-6 border-b border-neutral-800/50">
+                <div className="text-center pb-6 border-b border-neutral-200 dark:border-neutral-800/50">
                     <p className="text-sm text-neutral-500 font-medium mb-2 uppercase tracking-widest">Nominal Transaksi</p>
                     <div className="flex items-center justify-center text-4xl md:text-5xl font-bold font-mono">
                         <span className={`mr-2 ${type === "INCOME" ? "text-emerald-500" : "text-red-500"}`}>Rp</span>
@@ -117,7 +117,7 @@ function TransactionForm() {
                             onChange={handleAmountChange}
                             placeholder="0"
                             autoComplete="off"
-                            className="bg-transparent border-none text-white focus:ring-0 focus:outline-none w-full max-w-[300px] text-center placeholder-neutral-700 transition-all focus:scale-105"
+                            className="bg-transparent border-none text-neutral-900 dark:text-white focus:ring-0 focus:outline-none w-full max-w-[300px] text-center placeholder-neutral-400 dark:placeholder-neutral-700 transition-all focus:scale-105"
                             required
                         />
                     </div>
@@ -128,7 +128,7 @@ function TransactionForm() {
                     {/* Left Column */}
                     <div className="space-y-6">
                         <div className="group/input">
-                            <label className="block text-sm font-medium text-neutral-400 mb-2 group-focus-within/input:text-emerald-400 transition-colors">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-400 mb-2 group-focus-within/input:text-emerald-500 dark:group-focus-within/input:text-emerald-400 transition-colors">
                                 Pilih Dompet / Rekening
                             </label>
                             <div className="relative">
@@ -137,7 +137,7 @@ function TransactionForm() {
                                     name="walletId"
                                     required
                                     disabled={loadingData}
-                                    className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl px-11 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all disabled:opacity-50 appearance-none shadow-inner"
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-300 dark:border-neutral-800 rounded-xl px-11 py-3.5 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all disabled:opacity-50 appearance-none shadow-inner"
                                 >
                                     <option value="" disabled selected hidden>Pilih sumber dana...</option>
                                     {wallets.map(w => (
@@ -153,7 +153,7 @@ function TransactionForm() {
                         </div>
 
                         <div className="group/input">
-                            <label className="block text-sm font-medium text-neutral-400 mb-2 group-focus-within/input:text-emerald-400 transition-colors">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-400 mb-2 group-focus-within/input:text-emerald-500 dark:group-focus-within/input:text-emerald-400 transition-colors">
                                 Kategori
                             </label>
                             <div className="relative">
@@ -162,7 +162,7 @@ function TransactionForm() {
                                     name="categoryId"
                                     required
                                     disabled={loadingData}
-                                    className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl px-11 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all disabled:opacity-50 appearance-none shadow-inner"
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-300 dark:border-neutral-800 rounded-xl px-11 py-3.5 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all disabled:opacity-50 appearance-none shadow-inner"
                                 >
                                     <option value="" disabled selected hidden>Pilih kategori...</option>
                                     {filteredCategories.map(c => (
@@ -181,7 +181,7 @@ function TransactionForm() {
                     {/* Right Column */}
                     <div className="space-y-6">
                         <div className="group/input">
-                            <label className="block text-sm font-medium text-neutral-400 mb-2 group-focus-within/input:text-emerald-400 transition-colors">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-400 mb-2 group-focus-within/input:text-emerald-500 dark:group-focus-within/input:text-emerald-400 transition-colors">
                                 Tanggal Transaksi
                             </label>
                             <div className="relative">
@@ -191,13 +191,13 @@ function TransactionForm() {
                                     name="date"
                                     required
                                     defaultValue={new Date().toISOString().split('T')[0]}
-                                    className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl px-11 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all shadow-inner [color-scheme:dark]"
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-300 dark:border-neutral-800 rounded-xl px-11 py-3.5 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all shadow-inner [color-scheme:light_dark]"
                                 />
                             </div>
                         </div>
 
                         <div className="group/input">
-                            <label className="block text-sm font-medium text-neutral-400 mb-2 group-focus-within/input:text-emerald-400 transition-colors">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-400 mb-2 group-focus-within/input:text-emerald-500 dark:group-focus-within/input:text-emerald-400 transition-colors">
                                 Catatan Tambahan (Opsional)
                             </label>
                             <div className="relative">
@@ -208,7 +208,7 @@ function TransactionForm() {
                                     onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Contoh: Beli makan siang, Bayar listrik..."
                                     rows={3}
-                                    className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl pl-11 pr-4 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all resize-none shadow-inner"
+                                    className="w-full bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-300 dark:border-neutral-800 rounded-xl pl-11 pr-4 py-3.5 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all resize-none shadow-inner"
                                 />
                             </div>
                         </div>
@@ -252,13 +252,13 @@ export default function NewTransactionPage() {
 
     return (
         <div className="max-w-2xl mx-auto space-y-6">
-            <div className="flex items-center space-x-4 border-b border-neutral-800 pb-4">
-                <button onClick={() => router.back()} className="p-2 hover:bg-neutral-800 rounded-full transition-colors text-neutral-400 hover:text-white">
+            <div className="flex items-center space-x-4 border-b border-neutral-200 dark:border-neutral-800 pb-4">
+                <button onClick={() => router.back()} className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
                     <ArrowLeft className="h-5 w-5" />
                 </button>
                 <div>
-                    <h2 className="text-2xl font-bold">Tambah Transaksi</h2>
-                    <p className="text-sm text-neutral-400">Catat histori pengeluaran/pemasukan Anda.</p>
+                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">Tambah Transaksi</h2>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400">Catat histori pengeluaran/pemasukan Anda.</p>
                 </div>
             </div>
 

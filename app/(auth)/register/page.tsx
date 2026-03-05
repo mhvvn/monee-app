@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 import { signUp } from "@/lib/auth-client";
-import { Loader2, Mail, Lock, User } from "lucide-react";
+import { Loader2, Mail, Lock, User, AtSign } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
     const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ export default function RegisterPage() {
         try {
             await signUp.email({
                 name,
+                username,
                 email,
                 password,
                 fetchOptions: {
@@ -66,6 +68,21 @@ export default function RegisterPage() {
                             required
                             className="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-10 py-2.5 text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
                             placeholder="Budi Santoso"
+                        />
+                    </div>
+                </div>
+
+                <div className="space-y-1">
+                    <label className="text-sm font-medium text-neutral-300 ml-1">Username</label>
+                    <div className="relative">
+                        <AtSign className="absolute left-3 top-2.5 h-5 w-5 text-neutral-500" />
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            className="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-10 py-2.5 text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+                            placeholder="budi_s"
                         />
                     </div>
                 </div>
