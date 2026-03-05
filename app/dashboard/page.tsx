@@ -13,7 +13,7 @@ interface DashboardData {
     income: number;
     expense: number;
     recentTransactions: any[];
-    chartData: any[]; // Added this property
+    chartData: any[]; // Added this propertyy
 }
 
 export default function Dashboard() {

@@ -2,9 +2,10 @@ import Link from "next/link";
 import { getRecentTransactions } from "@/actions/transaction";
 import { Wallet, Tag, PlusCircle, ArrowUpCircle, ArrowDownCircle, Camera } from "lucide-react";
 import DeleteTransactionButton from "@/components/DeleteTransactionButton";
+import ExportTransactions from "@/components/ExportTransactions";
 
 export default async function TransactionsPage() {
-    const transactions = await getRecentTransactions(50);
+    const transactions = await getRecentTransactions(1000); // Increased limit for export purposes
 
     return (
         <div className="space-y-6 max-w-5xl mx-auto">
@@ -13,24 +14,25 @@ export default async function TransactionsPage() {
                     <h2 className="text-3xl font-bold">Riwayat Transaksi</h2>
                     <p className="text-neutral-400 mt-1">Daftar semua pergerakan dana Anda.</p>
                 </div>
-                <div className="mt-4 md:mt-0 flex space-x-3">
+                <div className="mt-4 md:mt-0 flex flex-wrap gap-3 items-center">
+                    <ExportTransactions transactions={transactions} />
                     <Link
                         href="/dashboard/transactions/scan"
-                        className="flex items-center space-x-2 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors"
+                        className="flex items-center space-x-2 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors shadow-sm"
                     >
                         <Camera className="h-5 w-5" />
                         <span className="hidden sm:inline">Scan Struk</span>
                     </Link>
                     <Link
                         href="/dashboard/transactions/new?type=expense"
-                        className="flex items-center space-x-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors"
+                        className="flex items-center space-x-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors shadow-sm"
                     >
                         <ArrowDownCircle className="h-5 w-5" />
                         <span>Pengeluaran</span>
                     </Link>
                     <Link
                         href="/dashboard/transactions/new?type=income"
-                        className="flex items-center space-x-2 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors"
+                        className="flex items-center space-x-2 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 border border-emerald-500/20 font-medium px-4 py-2.5 rounded-xl transition-colors shadow-sm"
                     >
                         <ArrowUpCircle className="h-5 w-5" />
                         <span>Pemasukan</span>
